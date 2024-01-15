@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizzQuest.Vues.UserPage"
+             Title="UserPage"
+                          BackgroundImageSource="background.png">
+
+    <VerticalStackLayout Spacing="10">
+
+        <Frame 
+                BackgroundColor="Transparent"
+                BorderColor="Green"
+                CornerRadius="100"
+                HeightRequest="200"
+                WidthRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Margin="0,30,0,0">
+            <Image 
+                    Source="{Binding Photo}"
+                    Aspect="AspectFill"
+                    HeightRequest="190"
+                    WidthRequest="190"
+                    Clip="EllipseGeometry { Center=95,95, RadiusX=95, RadiusY=95 }"/>
+        </Frame>
+
+        <Frame BackgroundColor="#4CAF5080" 
+            Margin="200,20,200,5"
+           
+            CornerRadius="10"
+       HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout>
+
+                <Label Text="{Binding Nom}"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontSize="20" />
+
+                <Label Text="{Binding Prenom}"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontSize="20" />
+
+                <Label Text="{Binding Cagnotte, StringFormat='Cagnotte: {0:F2}'}"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontSize="20" />
+                
+                <Button Text="Retour à l'accueil" 
+        BackgroundColor="Green" 
+        TextColor="White"
+        Margin="20"
+    HorizontalOptions="FillAndExpand"
+        Clicked="Button_Clicked"/>
+
+            </VerticalStackLayout>
+        </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:QuizzQuest.Utilitaires" 
+    x:Class="QuizzQuest.Vues.ScorePage"
+             BackgroundImageSource="background.png"
+             Title="ScorePage">
+
+    <!-- Définir les ressources pour la page, y compris le convertisseur -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:Converters x:Key="Converters"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+    <VerticalStackLayout>
+
+        <!-- Ajout du titre du tableau -->
+        <Label HorizontalOptions="Center"
+       FontAttributes="Bold"
+       FontSize="Large"
+       Margin="0,20,0,20"
+       Text="{Binding NbQuestions, StringFormat='Classement final sur {0:N0} questions'}" />
+
+        <!-- Ajoutez une marge pour l'espacement -->
+
+        <VerticalStackLayout>
+
+            <!-- Image of the winner at the top center -->
+            <Image Source="crcogagnant.png"
+           HeightRequest="200"
+           WidthRequest="200"
+           HorizontalOptions="Center"
+           Margin="0,150,0,0" />
+
+            <!-- Winner's name and surname below the image -->
+            <Label Text="{Binding PremierScore.Nom}"
+           HorizontalOptions="Center"
+           FontAttributes="Bold"
+                    FontSize="16"
+ TextColor="DarkGreen"
+           Margin="0,0,0,10" />
+
+
+            <Label Text="{Binding PremierScore.TotalReponses, StringFormat=' {0:N0} bonnes réponses'}"
+           HorizontalOptions="Center"
+                    FontSize="16"
+ TextColor="DarkGreen"
+           Margin="0,0,0,20" />
+
+            <!-- The rest of your content goes here -->
+
+        </VerticalStackLayout>
+
+        <!-- CollectionView pour afficher les scores -->
+        <CollectionView x:Name="scoreCollectionView"  Header="{Binding .}" ItemsSource="{Binding Scores}" Margin="200,0">
+
+            <!-- En-tête de la CollectionView pour les titres des colonnes -->
+            <CollectionView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" RowDefinitions="Auto" ColumnDefinitions="*,*,*,*" BackgroundColor="Black">
+                        <!-- En-tête avec un fond noir et un texte blanc -->
+                        <Label Text="ID Utilisateur" Grid.Column="0" HorizontalOptions="Center" TextColor="White"/>
+                        <Label Text="Nom" Grid.Column="1" HorizontalOptions="Center" TextColor="White"/>
+                        <Label Text="Total Réponses" Grid.Column="2" HorizontalOptions="Center" TextColor="White"/>
+                        <Label Text="Temps Total" Grid.Column="3" HorizontalOptions="Center" TextColor="White"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.HeaderTemplate>
+
+            <!-- Modèle d'élément pour les données de score -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border StrokeThickness="1" Stroke="Navy" Padding="0" Margin="0,20">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="40,0,0,40"/>
+                        </Border.StrokeShape>
+
+                        <Grid Padding="10" HorizontalOptions="Fill" VerticalOptions="Center" BackgroundColor="{Binding Index, Converter={StaticResource Converters}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Contenu de la grille sans bordures individuelles -->
+                            <Label Text="{Binding UserId}" Grid.Column="0" HorizontalOptions="Center" FontSize="16"
+ TextColor="DarkGreen"/>
+                            <Label Text="{Binding Nom}" Grid.Column="1" HorizontalOptions="Center" FontSize="16"
+ TextColor="DarkGreen"/>
+                            <Label Text="{Binding TotalReponses}" Grid.Column="2" HorizontalOptions="Center"  FontSize="16"
+ TextColor="DarkGreen"/>
+                            <Label Text="{Binding TotalTemps}" Grid.Column="3" HorizontalOptions="Center"  FontSize="16"
+ TextColor="DarkGreen"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+
+        </CollectionView>
+        <Button Text="Retour à l'accueil"
+        HorizontalOptions="Center"
+        VerticalOptions="End" 
+        BackgroundColor="Green" 
+        TextColor="White" 
+        Margin="0,20,0,0"
+        Clicked="OnReturnToHomePageClicked" />
+
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

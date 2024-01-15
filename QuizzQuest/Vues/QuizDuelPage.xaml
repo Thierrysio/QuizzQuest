@@ -1,0 +1,81 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizzQuest.Vues.QuizDuelPage"
+             Title="QuizDuelPage"
+             BackgroundImageSource="background.png">
+    <VerticalStackLayout>
+
+        <Grid Padding="10"
+              RowSpacing="10"
+              HorizontalOptions="CenterAndExpand">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   x:Name="countdownLabel"
+                   Text="Aucun duel programme actuellement"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="Center"
+                   FontSize="25"
+                   TextColor="DarkGreen"
+                   FontAttributes="Bold"/>
+
+            <Image Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Source="leduel.png"
+                   Aspect="AspectFit"
+                   WidthRequest="300"
+                   HeightRequest="300"
+                   HorizontalOptions="CenterAndExpand"/>
+
+            <BoxView Grid.Row="2" Grid.Column="0"
+                     BackgroundColor="White" Opacity="0.3"
+                     HorizontalOptions="FillAndExpand"/>
+
+            <Label Grid.Row="2" Grid.Column="0"
+                   x:Name="user1Label"
+                   Text="-"
+                   HorizontalOptions="Start"
+                   FontSize="16"
+                   TextColor="DarkGreen"
+                   FontAttributes="Bold"/>
+
+            <BoxView Grid.Row="2" Grid.Column="1"
+                     BackgroundColor="White" Opacity="0.3"
+                     HorizontalOptions="FillAndExpand"/>
+
+            <Label Grid.Row="2" Grid.Column="1"
+                   x:Name="user2Label"
+                   Text="-"
+                   HorizontalOptions="End"
+                   FontSize="16"
+                   TextColor="DarkGreen"
+                   FontAttributes="Bold"/>
+
+            <Button Grid.Row="3"
+                Grid.Column="0"
+                    Grid.ColumnSpan="2"        
+                    x:Name="homeButton" 
+                    Text="Retour a l accueil" 
+                    BackgroundColor="Green" 
+                    TextColor="White" 
+                    IsVisible="False" 
+                    HorizontalOptions="CenterAndExpand"
+                    Clicked="homeButton_Clicked"/>
+
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

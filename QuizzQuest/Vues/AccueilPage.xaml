@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizzQuest.Vues.AccueilPage"
+             Title="AccueilPage"
+             BackgroundImageSource="background.png">
+    <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+
+        <!-- Premier cercle avec image -->
+        <Frame 
+    x:Name="ImageFrame1" 
+    WidthRequest="120" 
+    HeightRequest="120" 
+    CornerRadius="60" 
+    BorderColor="Black" 
+    Padding="0" 
+    BackgroundColor="Transparent">
+
+            <Image 
+        Source="leduel.png" 
+        WidthRequest="130" 
+        HeightRequest="130" 
+        Aspect="AspectFill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnImageFrame1Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Frame>
+
+        <Label Text="DUEL" HorizontalOptions="CenterAndExpand"  TextColor="DarkGreen" FontSize="25"
+       FontAttributes="Bold"/>
+
+        <!-- Deuxième cercle avec image -->
+        <Frame 
+    x:Name="ImageFrame2" 
+    WidthRequest="120"
+    HeightRequest="120" 
+    CornerRadius="60" 
+    BorderColor="Black" 
+    Padding="0" 
+    BackgroundColor="Transparent">
+
+            <Image 
+        Source="collectif.png" 
+        WidthRequest="130" 
+        HeightRequest="130" 
+        Aspect="AspectFill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnImageFrame2Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Frame>
+
+        <Label Text="CLASSE" HorizontalOptions="CenterAndExpand"  TextColor="DarkGreen" FontSize="25"
+       FontAttributes="Bold"/>
+
+    </StackLayout>
+</ContentPage>

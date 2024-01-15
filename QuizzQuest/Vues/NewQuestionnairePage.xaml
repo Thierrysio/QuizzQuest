@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizzQuest.Vues.NewQuestionnairePage"
+             Title="Nouveau Questionnaire"
+             BackgroundImageSource="background.png">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+
+            <Grid Padding="0" Margin="250,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Premier Editor -->
+                <Border Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" Padding="2">
+                    <Frame Padding="0" BackgroundColor="Green">
+                        <Editor x:Name="jsonEditorBesoin"
+                    Placeholder="Saisir votre besoin ici"
+                    HeightRequest="200"
+                    AutoSize="TextChanges" />
+                    </Frame>
+                </Border>
+
+                <!-- Deuxième Editor -->
+                <Border Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" Padding="2">
+                    <Frame Padding="0" BackgroundColor="Green">
+                        <Editor x:Name="jsonEditor"
+                    Placeholder="Visualiser le json"
+                    HeightRequest="200"
+                    AutoSize="TextChanges" />
+                    </Frame>
+                </Border>
+
+                <!-- Bouton sous les Editors -->
+                <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+            Padding="0"
+            Text="Générer le json du Questionnaire"
+            Clicked="Button_Clicked"
+            BackgroundColor="Green"
+            TextColor="White" />
+            </Grid>
+
+
+            <Grid Grid.Row="0" BackgroundColor="Green" Margin="250,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- CheckBox et Label pour Quizz Collectif -->
+                <CheckBox Grid.Column="0" x:Name="quizzCollectifCheckBox"
+              CheckedChanged="OnQuizzCollectifCheckedChanged"/>
+                <Label Grid.Column="0" Text="Quizz Collectif"
+           VerticalOptions="Center"
+           HorizontalOptions="Center"
+           TextColor="White"/>
+
+                <!-- Espace de séparation -->
+                <BoxView Grid.Column="1" BackgroundColor="Green"/>
+
+                <!-- CheckBox et Label pour Quizz Duel -->
+                <CheckBox Grid.Column="2" x:Name="quizzDuelCheckBox"
+                          BackgroundColor="White"
+              CheckedChanged="OnQuizzDuelCheckedChanged"/>
+                <Label Grid.Column="2" Text="Quizz Duel"
+           VerticalOptions="Center"
+           HorizontalOptions="Center"
+           TextColor="White"/>
+            </Grid>
+
+            <Grid Grid.Row="1" BackgroundColor="Green" Margin="250,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- DatePicker dans la première colonne -->
+                <DatePicker Grid.Column="0" x:Name="datePicker" HorizontalOptions="End" TextColor="White"/>
+
+                <!-- Espace de séparation -->
+                <BoxView Grid.Column="1" BackgroundColor="Green"/>
+
+                <!-- TimePicker dans la deuxième colonne -->
+                <TimePicker Grid.Column="2" x:Name="timePicker" HorizontalOptions="Start" TextColor="White"/>
+            </Grid>
+
+            <Grid Grid.Row="2" BackgroundColor="Green" Margin="250,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Bouton pour créer le questionnaire -->
+                <Button Grid.Column="0" Padding="0" Text="Créer le Questionnaire"
+            Clicked="OnCreateQuestionnaireClicked"
+            BackgroundColor="Green"
+            TextColor="White"
+            HorizontalOptions="Center" />
+
+                <!-- Espace de séparation -->
+                <BoxView Grid.Column="1" BackgroundColor="Green"/>
+
+                <!-- ImageButton -->
+                <ImageButton Grid.Column="2" Source="crococontinue.png"
+                 HeightRequest="50"
+                 WidthRequest="50"
+                 Aspect="AspectFill"
+                 CornerRadius="25"
+                 Clicked="OnImageButtonClicked"
+                 HorizontalOptions="Center" />
+            </Grid>
+
+
+            <VerticalStackLayout Padding="0" Margin="250,0" BackgroundColor="Green">
+                <!-- Frame verte pour encadrer le Picker -->
+                <Frame BorderColor="Green" CornerRadius="10" Padding="10">
+                    <Picker x:Name="questionnairePicker"
+                ItemsSource="{Binding _questionnaires}"
+                ItemDisplayBinding="{Binding Titre}"
+                HorizontalOptions="CenterAndExpand"
+                Title="Choisir un questionnaire"
+                SelectedIndexChanged="OnQuestionnaireSelected"
+                FontSize="20" 
+                        TitleColor="Green">
+                        <!-- Couleur du titre -->
+                    </Picker>
+                </Frame>
+            </VerticalStackLayout>
+
+            <Button Grid.Column="0" Padding="0" Text="Visualiser le classement"
+Clicked="Button_Clicked_1"  
+BackgroundColor="Green"
+TextColor="White"
+HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

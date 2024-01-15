@@ -1,0 +1,83 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizzQuest.Vues.QuizPage"
+             BackgroundImageSource="background.png"
+             Title="QuizPage">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
+            <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <!-- BoxView avec un fond blanc transparent à 70% -->
+                <BoxView x:Name="progressBar"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         CornerRadius="50"
+                         BackgroundColor="Transparent"/>
+                <BoxView x:Name="circleTimer"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         CornerRadius="50"
+                         BackgroundColor="Transparent"/>
+                <Grid x:Name="responseTracker" 
+                  Grid.Column="1" 
+                  HorizontalOptions="EndAndExpand" 
+                  VerticalOptions="Center"
+                  HeightRequest="50"
+                  Margin="10"
+                  BackgroundColor="Transparent">
+                    <!-- Les colonnes seront ajoutées dynamiquement dans le code-behind -->
+                </Grid>
+            </Grid>
+
+            <Frame BorderColor="Black" Padding="20" BackgroundColor="#B3FFFFFF">
+                <Label Text="{Binding CurrentQuestion.TexteDeQuestion}" 
+                       FontSize="16"
+                       TextColor="DarkGreen"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       BackgroundColor="Transparent"/>
+            </Frame>
+            <BoxView HeightRequest="2" Color="Black" HorizontalOptions="FillAndExpand" BackgroundColor="#B3FFFFFF" />
+            <CollectionView ItemsSource="{Binding LesChoix}" SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Black" Margin="0,5" Padding="10" BackgroundColor="{Binding BackgroundColor}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Image}" 
+                                       HeightRequest="40" 
+                                       WidthRequest="80" 
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnChoiceTapped" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="{Binding TexteDeChoix}" 
+                                       Grid.Column="1" 
+                                       FontSize="16"
+                                       TextColor="DarkGreen"
+                                       VerticalOptions="Center"
+                                       BackgroundColor="#B3FFFFFF"
+                                       LineBreakMode="WordWrap"
+                                       MaxLines="{OnPlatform Default=-1}"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
